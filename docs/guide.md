@@ -1,8 +1,8 @@
-# PyScript Solid Guide
+# Examples
 
 `display()` writes to the page. `print()` writes to the console unless you enable a terminal with `<PyScript terminal>`.
 
-## External files and configuration
+## Python files
 
 Put `hello.py` in your Vite app's `public/` directory so it is included in production builds:
 
@@ -19,7 +19,7 @@ Put `hello.py` in your Vite app's `public/` directory so it is included in produ
 
 `config` accepts an object, inline JSON, or a JSON/TOML file URL. For shared main-thread configuration, place one `<PyConfig>` containing JSON or TOML before the scripts. Editors require their own `config` prop.
 
-## Editor and MicroPython
+## Editor
 
 ```tsx
 import { PyEditor, PyScriptProvider } from "pyscript-solid";
@@ -31,27 +31,19 @@ import { PyEditor, PyScriptProvider } from "pyscript-solid";
 
 Editors download their interpreter when Run is clicked. Use `env` to share an environment between editors. For ordinary MicroPython scripts, use `<PyScript type="mpy">`.
 
-`PyScript` supports `worker`, `terminal`, and `async`. When hosting worker scripts or editors, configure cross-origin isolation headers (`Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: require-corp`) for PyScript's synchronous worker-to-main-thread access. Ordinary main-thread examples do not need these headers.
+## Worker hosting
+
+For editors and worker scripts, add these response headers on your app's host:
+
+```text
+Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Embedder-Policy: require-corp
+```
+
+They enable synchronous access to the page from a worker. The repo's editor example includes Vite configuration for this. GitHub Pages cannot set these headers; use a host that supports them for worker apps. Main-thread scripts do not need them.
 
 ## Runtime lifecycle
 
 The provider loads the tested PyScript **2026.7.3** release as a module after its children mount. It reuses matching scripts and styles already in the document and keeps them for the page lifetime. To use a different release or self-host, set both `jsSource` and `cssSource` on the provider to matching `core.js` and `core.css` URLs. Use one runtime version per page.
 
 Python scripts execute when mounted. Changing source or configuration props does not rerun an existing interpreter; mount a new component or use the editor. Global configuration must be present before the first runtime loads. The default runtime and Python interpreter are downloaded from external CDNs, so first execution needs network access.
-
-## Migration from the alpha wrapper
-
-This modernization includes breaking changes and should be published as a new major version.
-
-| Previous API                                 | Current replacement                                                       |
-| -------------------------------------------- | ------------------------------------------------------------------------- |
-| `PyScript` rendering `<py-script>`           | Renders `<script type="py">` with raw Python text                         |
-| `output`                                     | `target` with an element ID                                               |
-| `outputMode`, `stdOut`, `stdErr`, `execId`   | Removed; use current PyScript display, terminal, and event APIs           |
-| `PyRepl`                                     | `PyEditor`; `PyRepl` remains a deprecated alias                           |
-| `PyEnv` with YAML packages                   | `config={{ packages: [...] }}` or `PyConfig` with JSON/TOML               |
-| `PyBox`, `PyButton`, `PyInputBox`, `PyTitle` | Native Solid/HTML elements; bind Python events with PyScript's `when` API |
-| `PyRegisterWidget`                           | Native components and the current PyScript DOM API                        |
-| UMD bundle                                   | ESM and CommonJS browser/server exports with TypeScript declarations      |
-
-The alpha-only widget exports were removed because current PyScript does not implement them. See the [current PyScript documentation](https://docs.pyscript.net/2026.7.3/) for Python-side migration.

@@ -25,6 +25,8 @@ Run `bun run test` rather than `bun test`; component tests need Vitest and the S
 
 This update removes alpha-only PyScript APIs. Publish it with a Conventional Commit breaking-change marker (`feat!:` or a `BREAKING CHANGE:` footer) so semantic-release creates a major version.
 
+Docs: `bun run docs:dev` starts VitePress. `bun run docs:test` builds the site and checks navigation and search. GitHub Pages deploys from `main` and, until the next release lands, `fix/modernize-pyscript`.
+
 ## Conventions for commiting
 
 Please refer to the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). The use of the [Conventional Commits extension for VSCode](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits) when commiting is recommended.

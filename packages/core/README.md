@@ -30,7 +30,7 @@ display("Hello World")`}</PyScript>
 }
 ```
 
-Find more in the [examples](https://github.com/ugnmura/pyscript-solid/tree/main/examples) and [usage guide](https://github.com/ugnmura/pyscript-solid/blob/main/docs/guide.md).
+Find more in the [examples](https://github.com/ugnmura/pyscript-solid/tree/main/examples) and [documentation](https://ugnmura.github.io/pyscript-solid/).
 
 ## License
 
