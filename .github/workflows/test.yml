@@ -2,31 +2,28 @@ name: Test
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Get files
-        uses: actions/checkout@v2
-      
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-
-      - name: Update pnpm
-        run: npm i -g pnpm@latest
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
+      - uses: actions/checkout@v7
         with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/pnpm-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
-
-      - name: Install packages
-        run: pnpm install
-
-      - name: Test
-        run: pnpm run test
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium
+      - run: bun run check
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-results
+          path: test-results/
+          retention-days: 7

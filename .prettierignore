@@ -3,3 +3,8 @@ coverage
 dist
 node_modules
 .next
+bun.lock
+.turbo
+playwright-report
+test-results
+**/CHANGELOG.md

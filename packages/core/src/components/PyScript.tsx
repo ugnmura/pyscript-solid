@@ -1,42 +1,58 @@
-import { Component } from "solid-js";
-import type { JSX } from "solid-js";
-
-export type PyScriptWebProperties = Omit<
-  JSX.HTMLAttributes<HTMLElement>,
-  "children"
-> & {
-  children?: string;
-  ["attr:output"]?: string;
-  ["attr:output-mode"]?: string;
-  ["attr:std-out"]?: string;
-  ["attr:std-err"]?: string;
-  ["attr:exec-id"]?: string;
-  ["attr:src"]?: string;
-};
+import { splitProps, type Component, type JSX } from "solid-js";
 
 export type PyScriptProperties = Omit<
-  JSX.HTMLAttributes<HTMLElement>,
-  "children"
+  JSX.ScriptHTMLAttributes<HTMLScriptElement>,
+  "children" | "type" | "src" | "async" | "textContent" | "innerHTML"
 > & {
   children?: string;
-  output?: string;
-  outputMode?: string;
-  stdOut?: string;
-  stdErr?: string;
-  execId?: string;
   src?: string;
+  type?: "py" | "mpy";
+  config?: string | Record<string, unknown>;
+  target?: string;
+  worker?: boolean | string;
+  terminal?: boolean | string;
+  async?: boolean;
 };
 
-export const PyScript: Component<PyScriptProperties> = (props): JSX.Element => {
+/** Python source and configuration are read once, when the element mounts. */
+export const PyScript: Component<PyScriptProperties> = (props) => {
+  const [local, rest] = splitProps(props, [
+    "children",
+    "src",
+    "type",
+    "config",
+    "target",
+    "worker",
+    "terminal",
+    "async",
+  ]);
   return (
-    <py-script
-      attr:output={props.output}
-      attr:output-mode={props.outputMode}
-      attr:std-out={props.stdOut}
-      attr:std-err={props.stdErr}
-      attr:exec-id={props.execId}
-      attr:src={props.src}
-      {...props}
+    <script
+      {...rest}
+      type={local.type ?? "py"}
+      src={local.src}
+      attr:config={
+        typeof local.config === "object"
+          ? JSON.stringify(local.config)
+          : local.config
+      }
+      attr:target={local.target}
+      attr:worker={
+        local.worker === false
+          ? undefined
+          : local.worker === true
+            ? ""
+            : local.worker
+      }
+      attr:terminal={
+        local.terminal === false
+          ? undefined
+          : local.terminal === true
+            ? ""
+            : local.terminal
+      }
+      attr:async={local.async ? "" : undefined}
+      textContent={local.children ?? ""}
     />
   );
 };

@@ -1,22 +1,35 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "baseBranch": "origin/main",
-  "pipeline": {
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
     "dev": {
       "cache": false,
-      "outputs": []
+      "persistent": true,
+      "dependsOn": ["build"]
     },
     "test": {
-      "outputs": []
+      "outputs": ["coverage/**"]
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["dist/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["build"],
+      "outputs": []
     },
     "release": {
       "dependsOn": ["build"],
       "cache": false,
       "outputs": []
+    },
+    "test:package": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
+    "dev:types": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "persistent": true
     }
   }
 }

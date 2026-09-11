@@ -4,7 +4,7 @@ import type { Component } from "solid-js";
 const App: Component = () => {
   return (
     <PyScriptProvider>
-      <PyScript src="hello.py" />
+      <PyScript src={`${import.meta.env.BASE_URL}hello.py`} />
     </PyScriptProvider>
   );
 };
