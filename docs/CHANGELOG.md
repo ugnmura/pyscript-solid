@@ -1,3 +1,23 @@
+# [2.0.0](https://github.com/ugnmura/pyscript-solid/compare/v1.4.0...v2.0.0) (2026-09-12)
+
+
+* feat!: modernize PyScript integration and Bun workspace ([d3c599b](https://github.com/ugnmura/pyscript-solid/commit/d3c599b7ef87c094c5a6151c32171d153a58ce39))
+
+
+### Bug Fixes
+
+* forward credentials to package release tasks ([40f35b1](https://github.com/ugnmura/pyscript-solid/commit/40f35b1407728a4703996f6b83320f6e6b04d51b))
+* give release decorators an absolute hook path ([631594e](https://github.com/ugnmura/pyscript-solid/commit/631594e6d8ebafb2b065ca2291bd5504444f5eba))
+* keep Bun workspaces consistent during releases ([f32ee28](https://github.com/ugnmura/pyscript-solid/commit/f32ee284f7fd96d4f3a4647ec7d837701e772ae4))
+* resolve release hook from each workspace ([39c4021](https://github.com/ugnmura/pyscript-solid/commit/39c4021a5115ba14dda78fb3e3ed6c8f3de4caa4))
+
+
+### BREAKING CHANGES
+
+* remove obsolete alpha widgets and script options.
+Use current PyScript configuration, target, and editor APIs. Replace UMD
+with ESM and CommonJS browser/server entry points.
+
 # [1.3.0](https://github.com/SushiWaUmai/pyscript-solid/compare/v1.2.0...v1.3.0) (2022-06-01)
 
 
