@@ -2,7 +2,7 @@ name: Documentation
 
 on:
   push:
-    branches: [main, fix/modernize-pyscript]
+    branches: [main]
     paths:
       - "docs/**"
       - "test/docs/**"

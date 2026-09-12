@@ -11,7 +11,7 @@ These docs cover the modernized API. npm still ships the older `1.4.0` release; 
 Install [Bun](https://bun.sh/) 1.4.2+ and [Node.js](https://nodejs.org/) 24.10+, then:
 
 ```sh
-git clone --branch fix/modernize-pyscript https://github.com/ugnmura/pyscript-solid.git
+git clone https://github.com/ugnmura/pyscript-solid.git
 cd pyscript-solid
 bun install
 bun run build
