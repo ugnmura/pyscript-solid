@@ -36,6 +36,7 @@ jobs:
           if (!token || token !== token.trim() || !token.startsWith("npm_")) {
             throw new Error("NPM_TOKEN is missing or has an unexpected format.");
           }
+          if (token.length < 30) throw new Error("NPM_TOKEN contains a shortened token identifier, not the full credential.");
           const response = await fetch("https://registry.npmjs.org/-/whoami", {
             headers: { authorization: `Bearer ${token}` },
           });
