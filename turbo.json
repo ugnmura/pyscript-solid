@@ -20,7 +20,8 @@
     "release": {
       "dependsOn": ["build"],
       "cache": false,
-      "outputs": []
+      "outputs": [],
+      "passThroughEnv": ["GITHUB_TOKEN", "NPM_TOKEN"]
     },
     "test:package": {
       "dependsOn": ["build"],
