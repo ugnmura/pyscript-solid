@@ -11,10 +11,11 @@
       }
     ],
     "@semantic-release/npm",
+    "@pyscript-solid/config/versioning/sync-lock.cjs",
     [
       "@semantic-release/git",
       {
-        "assets": ["CHANGELOG.md", "package.json"]
+        "assets": ["CHANGELOG.md", "package.json", "../../bun.lock"]
       }
     ]
   ],

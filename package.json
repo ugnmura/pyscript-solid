@@ -6,7 +6,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev dev:types",
-    "release": "turbo run release && semantic-release",
+    "release": "turbo run release --concurrency=1 && semantic-release",
     "test": "turbo run test test:package",
     "prepare": "husky",
     "typecheck": "tsc --noEmit && turbo run typecheck",
