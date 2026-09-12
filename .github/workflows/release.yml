@@ -1,6 +1,7 @@
 name: Release
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
 
@@ -26,6 +27,21 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version-file: package.json
+      - name: Verify npm authentication
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          node --input-type=module <<'JS'
+          const token = process.env.NPM_TOKEN;
+          if (!token || token !== token.trim() || !token.startsWith("npm_")) {
+            throw new Error("NPM_TOKEN is missing or has an unexpected format.");
+          }
+          const response = await fetch("https://registry.npmjs.org/-/whoami", {
+            headers: { authorization: `Bearer ${token}` },
+          });
+          if (!response.ok) throw new Error(`npm authentication failed: HTTP ${response.status}`);
+          console.log("npm authentication verified.");
+          JS
       - run: bun install --frozen-lockfile
       - run: bunx playwright install --with-deps chromium
       - run: bun run check
