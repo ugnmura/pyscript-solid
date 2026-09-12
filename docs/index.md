@@ -2,10 +2,6 @@
 
 Run Python inside a Solid component.
 
-::: info Next release
-These docs cover the modernized API. npm still ships the older `1.4.0` release; use the source checkout below to try this version.
-:::
-
 ## 1. Run the example
 
 Install [Bun](https://bun.sh/) 1.4.2+ and [Node.js](https://nodejs.org/) 24.10+, then:
@@ -41,12 +37,12 @@ Reload the page to see **42**. `display()` writes to the page; `print()` writes 
 
 ## 3. Use it in your app
 
-From `packages/core` in the built checkout, run `bun pm pack`. In your Solid app, install the resulting archive:
+In an existing Solid app:
 
 ```sh
-bun add /absolute/path/to/pyscript-solid/packages/core/pyscript-solid-1.4.0.tgz
+bun add pyscript-solid
 ```
 
-Use the filename printed by `bun pm pack` if it differs. Copy the component above into your app.
+Copy the component above into your app. Upgrading from 1.x? See the [migration guide](/migration).
 
 Next: [load a Python file](/guide#python-files), [add an editor](/guide#editor), or browse the [API reference](/api).

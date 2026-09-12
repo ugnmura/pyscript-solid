@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SushiWaUmai/pyscript-solid.git"
+    "url": "https://github.com/ugnmura/pyscript-solid.git"
   },
   "description": "Use PyScript together with Solid.js.",
   "author": "Eugene Matsumura",

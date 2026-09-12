@@ -1,6 +1,6 @@
 # Migration
 
-This modernization includes breaking changes and should be published as a new major version.
+Version 2.0 replaces the alpha wrapper with the current PyScript API.
 
 | Previous API                                 | Current replacement                                                       |
 | -------------------------------------------- | ------------------------------------------------------------------------- |

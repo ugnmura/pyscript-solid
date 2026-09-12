@@ -6,7 +6,7 @@ export default defineConfig({
   base: "/pyscript-solid/",
   srcExclude: ["CHANGELOG.md"],
   themeConfig: {
-    nav: [{ text: "Next release", link: "/migration" }],
+    nav: [{ text: "v2.0", link: "/migration" }],
     sidebar: [
       { text: "Get started", link: "/" },
       { text: "API reference", link: "/api" },
