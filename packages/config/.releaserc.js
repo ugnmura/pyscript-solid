@@ -1,1 +1,1 @@
-module.exports = require("./versioning/releaserc.json");
+module.exports = require("./versioning/releaserc.cjs");
