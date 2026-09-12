@@ -1,3 +1,20 @@
+# [pyscript-solid-v2.0.0](https://github.com/SushiWaUmai/pyscript-solid/compare/pyscript-solid-v1.4.0...pyscript-solid-v2.0.0) (2026-09-12)
+
+
+* feat!: modernize PyScript integration and Bun workspace ([d3c599b](https://github.com/SushiWaUmai/pyscript-solid/commit/d3c599b7ef87c094c5a6151c32171d153a58ce39))
+
+
+### Bug Fixes
+
+* give release decorators an absolute hook path ([631594e](https://github.com/SushiWaUmai/pyscript-solid/commit/631594e6d8ebafb2b065ca2291bd5504444f5eba))
+
+
+### BREAKING CHANGES
+
+* remove obsolete alpha widgets and script options.
+Use current PyScript configuration, target, and editor APIs. Replace UMD
+with ESM and CommonJS browser/server entry points.
+
 # [pyscript-solid-v1.4.0](https://github.com/SushiWaUmai/pyscript-solid/compare/pyscript-solid-v1.3.0...pyscript-solid-v1.4.0) (2022-06-01)
 
 
