@@ -4,7 +4,8 @@ import { PyScript, PyScriptProvider } from "pyscript-solid";
 const App: Component = () => {
   return (
     <PyScriptProvider>
-      <PyScript>print("Hello World")</PyScript>
+      <PyScript>{`from pyscript import display
+display("Hello World")`}</PyScript>
     </PyScriptProvider>
   );
 };

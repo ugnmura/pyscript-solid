@@ -8,6 +8,8 @@
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "./test/**/*.ts",
-    "./test/**/*.tsx"
+    "./test/**/*.tsx",
+    "./test/**/*.mts",
+    "./vite.config.mts"
   ]
 }

@@ -1,30 +1,50 @@
-import type { JSX } from "solid-js";
-import { Link, MetaProvider } from "solid-meta";
-import { Component } from "solid-js";
-import { createScriptLoader } from "@solid-primitives/script-loader";
+import { onMount, type ParentComponent } from "solid-js";
 
-interface PyScriptProviderProperties {
-  children: JSX.Element;
+/** The PyScript release tested with this package. */
+export const PYSCRIPT_VERSION = "2026.7.3";
+const baseURL = `https://pyscript.net/releases/${PYSCRIPT_VERSION}`;
+
+export interface PyScriptProviderProperties {
+  /** Set both sources together when using a different PyScript release. */
   jsSource?: string;
   cssSource?: string;
 }
 
-export const PyScriptProvider: Component<PyScriptProviderProperties> = (
+/** Loads PyScript once, after child scripts and configuration are mounted. */
+export const PyScriptProvider: ParentComponent<PyScriptProviderProperties> = (
   props,
 ) => {
-  createScriptLoader({
-    src: props.jsSource || "https://pyscript.net/alpha/pyscript.js",
+  onMount(() => {
+    const jsSource = props.jsSource ?? `${baseURL}/core.js`;
+    const cssSource = props.cssSource ?? `${baseURL}/core.css`;
+    const cssURL = new URL(cssSource, document.baseURI).href;
+    const jsURL = new URL(jsSource, document.baseURI).href;
+
+    if (
+      ![
+        ...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]'),
+      ].some((link) => link.href === cssURL)
+    ) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = cssSource;
+      document.head.appendChild(link);
+    }
+    if (
+      ![
+        ...document.querySelectorAll<HTMLScriptElement>(
+          'script[type="module"][src]',
+        ),
+      ].some((script) => script.src === jsURL)
+    ) {
+      const script = document.createElement("script");
+      script.type = "module";
+      script.src = jsSource;
+      document.head.appendChild(script);
+    }
   });
 
-  return (
-    <>
-      <MetaProvider>
-        <Link
-          rel="stylesheet"
-          href={props.cssSource || "https://pyscript.net/alpha/pyscript.css"}
-        />
-      </MetaProvider>
-      {props.children}
-    </>
-  );
+  // PyScript registers document-wide interpreters and custom elements. Its assets
+  // intentionally live for the page lifetime, including across provider remounts.
+  return props.children;
 };

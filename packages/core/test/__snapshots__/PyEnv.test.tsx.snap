@@ -1,3 +1,0 @@
-// Vitest Snapshot v1
-
-exports[`<PyEnv /> > renders 1`] = `"<py-env>- numpy</py-env>"`;

@@ -1,41 +1,37 @@
 # PyScript Solid
+
 [![npm](https://img.shields.io/npm/v/pyscript-solid?style=flat-square)](https://www.npmjs.com/package/pyscript-solid)
-[![License](https://shields.io/github/license/SushiWaUmai/pyscript-solid?style=flat-square)](https://github.com/SushiWaUmai/pyscript-solid/blob/main/LICENSE)
+[![License](https://shields.io/github/license/ugnmura/pyscript-solid?style=flat-square)](https://github.com/ugnmura/pyscript-solid/blob/main/LICENSE)
 
 Use [PyScript](https://pyscript.net/) together with [Solid.js](https://www.solidjs.com/).
 
 ## Getting Started
 
 ### Installation
-Install pyscript-solid using npm:
 
-```
+```sh
+bun add pyscript-solid
+# or
 npm install pyscript-solid
-# or
-yarn add pyscript-solid
-# or
-pnpm install pyscript-solid
 ```
 
 ### Usage
-Simple Hello World in pyscript-solid.
 
 ```tsx
-import type { Component } from "solid-js";
 import { PyScript, PyScriptProvider } from "pyscript-solid";
 
-const App: Component = () => {
+export default function App() {
   return (
-	<PyScriptProvider>
-	  <PyScript>print("Hello World")</PyScript>
-	</PyScriptProvider>
+    <PyScriptProvider>
+      <PyScript>{`from pyscript import display
+display("Hello World")`}</PyScript>
+    </PyScriptProvider>
   );
-};
-
-export default App;
+}
 ```
 
-You can find more examples under the [`examples`](https://github.com/SushiWaUmai/pyscript-solid/tree/main/examples) directory.
+Find more in the [examples](https://github.com/ugnmura/pyscript-solid/tree/main/examples) and [documentation](https://ugnmura.github.io/pyscript-solid/).
 
 ## License
-This library is lilcensed under the [MIT license](https://github.com/SushiWaUmai/pyscript-solid/blob/main/LICENSE).
+
+[MIT](https://github.com/ugnmura/pyscript-solid/blob/main/LICENSE).

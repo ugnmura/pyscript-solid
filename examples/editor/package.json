@@ -1,0 +1,23 @@
+{
+  "name": "@pyscript-solid/example-editor",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@pyscript-solid/config": "workspace:*",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0",
+    "vite-plugin-solid": "^2.11.14"
+  },
+  "dependencies": {
+    "pyscript-solid": "workspace:*",
+    "solid-js": "^1.9.15"
+  }
+}

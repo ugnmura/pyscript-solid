@@ -1,22 +1,5 @@
-import { Component } from "solid-js";
-import type { JSX } from "solid-js";
+import { PyEditor } from "./PyEditor";
 
-export type PyReplWebProperties = Omit<
-  JSX.HTMLAttributes<HTMLElement>,
-  "children"
-> & {
-  children?: string;
-};
-
-export type PyReplProperties = Omit<
-  JSX.HTMLAttributes<HTMLElement>,
-  "children"
-> & {
-  children?: string;
-};
-
-export const PyRepl: Component<PyReplProperties> = (
-  props: PyReplProperties,
-): JSX.Element => {
-  return <py-repl {...props} />;
-};
+/** @deprecated Use PyEditor. The old py-repl runtime no longer exists. */
+export const PyRepl = PyEditor;
+export type { PyEditorProperties as PyReplProperties } from "./PyEditor";
