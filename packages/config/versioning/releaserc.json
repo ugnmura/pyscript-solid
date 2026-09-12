@@ -11,7 +11,7 @@
       }
     ],
     "@semantic-release/npm",
-    "@pyscript-solid/config/versioning/sync-lock.cjs",
+    "../config/versioning/sync-lock.cjs",
     [
       "@semantic-release/git",
       {
